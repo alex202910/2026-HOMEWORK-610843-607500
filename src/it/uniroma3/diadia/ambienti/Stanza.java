@@ -20,7 +20,7 @@ public class Stanza {
 	private String nome;
 	
     private Attrezzo[] attrezzi;
-    private int numeroAttrezzi;
+    int numeroAttrezzi;
     
     private Stanza[] stanzeAdiacenti;
     private int numeroStanzeAdiacenti;
@@ -141,7 +141,7 @@ public class Stanza {
 		boolean trovato;
 		trovato = false;
 		for (Attrezzo attrezzo : this.attrezzi) {
-			if (attrezzo.getNome().equals(nomeAttrezzo))
+			if (attrezzo != null && attrezzo.getNome().equals(nomeAttrezzo))
 				trovato = true;
 		}
 		return trovato;
@@ -169,7 +169,22 @@ public class Stanza {
 	 * @return true se l'attrezzo e' stato rimosso, false altrimenti
 	 */
 	public boolean removeAttrezzo(Attrezzo attrezzo) {
-		// TODO da implementare
+		if(this.attrezzi.length == 0) {
+            System.out.println("Non ci sono attrezzi da rimuovere");
+            return false;
+        }
+
+        for(int i = 0; i<numeroAttrezzi; i++){
+            if(this.attrezzi[i] == attrezzo) {
+                //sposto gli attrezzi
+                for(int j=i; j<numeroAttrezzi; j++) {
+                    attrezzi[j] = attrezzi[j+1];
+                }
+                this.attrezzi[numeroAttrezzi] = null;
+                numeroAttrezzi--;
+                return true;
+            }
+        }
 		return false;
 	}
 
