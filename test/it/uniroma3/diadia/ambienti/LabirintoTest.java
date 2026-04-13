@@ -1,6 +1,5 @@
 package it.uniroma3.diadia.ambienti;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -20,21 +19,22 @@ class LabirintoTest {
 	}
 	
 	@Test
-	void testVerificaStanzaCorrenteNonNulla() {
+	void testVerificaStanzaCorrenteNotNull() {
 		assertNotNull(this.labirinto.getStanzaCorrente());
 	}
+	
 	@Test
-	void testVerificaStanzaVincenteNonNulla() {
+	void testVerificaStanzaVincenteNotNull() {
 		assertNotNull(this.labirinto.getStanzaVincente());
 	}
+	
 	@Test
-	void testVerificaStanzaVincente() { 
+	void testVerificaStanzaVincente() {
 		assertTrue(this.labirinto.getStanzaVincente().getNome().equals(biblioteca.getNome()));
-		
 	}
+	
 	@Test
 	void testVerificaStanzaCorrente() {
 		assertTrue(this.labirinto.getStanzaCorrente().getNome().equals(atrio.getNome()));
 	}
-
 }

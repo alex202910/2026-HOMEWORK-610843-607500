@@ -1,7 +1,6 @@
 package it.uniroma3.diadia;
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.giocatore.Giocatore;
 
 /**
@@ -9,22 +8,47 @@ import it.uniroma3.diadia.giocatore.Giocatore;
  *
  * @author  docente di POO
  * @see Stanza
- * @version base
+ * @version HW1
  */
 
 public class Partita {
-
 	
 	private Stanza stanzaCorrente;
 	private boolean finita;
 	private Labirinto labirinto;
 	private Giocatore giocatore;
+	
+	/*
+	 * Costruttore per Partita
+	 */
 	public Partita(){
-		
 		this.labirinto = new Labirinto();
-		this.finita = false;
 		this.giocatore = new Giocatore();
-		
+		this.finita = false;
+		this.stanzaCorrente = this.labirinto.getStanzaIniziale();
+	}
+	
+	public Giocatore getGiocatore() {
+        return this.giocatore;
+    }
+
+	public Labirinto getLabirinto() {
+		return this.labirinto;
+	}
+
+	public Stanza getStanzaCorrente() {
+		return this.stanzaCorrente;
+	}
+	
+	public void setStanzaCorrente(Stanza stanzaCorrente) {
+		this.stanzaCorrente = stanzaCorrente;
+	}
+	
+	/**
+	 * Imposta la partita come finita
+	 */
+	public void setFinita() {
+		this.finita = true;
 	}
 	
 	/**
@@ -32,18 +56,11 @@ public class Partita {
 	 * @return vero se partita vinta
 	 */
 	public boolean vinta() {
-		return this.labirinto.getStanzaCorrente() == this.labirinto.getStanzaVincente();
+		return this.labirinto.getStanzaIniziale() == this.labirinto.getStanzaFinale();
 	}
 	
-	/*
-	 * Setta e restituisce la stanza corrente a DiaDia
-	 */
-	public void setStanzaCorrente(Stanza stanzaCorrente) {
-		this.stanzaCorrente = stanzaCorrente;
-	}
-	
-	public Stanza getStanzaCorrente() {
-		return this.stanzaCorrente;
+	public boolean persa() {
+		return this.giocatore.getCfu()<=0;
 	}
 
 	/**
@@ -51,19 +68,8 @@ public class Partita {
 	 * @return vero se partita finita
 	 */
 	public boolean isFinita() {
-		return finita || vinta() || (giocatore.getCfu() == 0);
+		return finita || vinta() || persa();
 	}
 
-	/**
-	 * Imposta la partita come finita
-	 *
-	 */
-	public void setFinita() {
-		this.finita = true;
-	}
-	
-	public Giocatore getGiocatore() {
-		return this.giocatore;
-	}
 	
 }

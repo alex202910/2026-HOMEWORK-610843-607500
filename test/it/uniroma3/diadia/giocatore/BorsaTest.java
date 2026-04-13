@@ -13,7 +13,6 @@ class BorsaTest {
 	private Attrezzo penna;
 	private Attrezzo martello;
 	
-	
 	@BeforeEach
 	public void setUp() {
 		this.borsa = new Borsa();
@@ -26,16 +25,16 @@ class BorsaTest {
 	
 	@Test
 	void testBorsaNonVuota() {
-		this.penna = new Attrezzo("penna", 2);
+		this.penna = new Attrezzo("Penna",2);
 		this.borsa.addAttrezzo(penna);
 		assertFalse(this.borsa.isEmpty());
 	}
 	
 	@Test
-	void testBorsaPesoMassimo() {
-		this.martello = new Attrezzo("martello", 10);
-		this.borsa.addAttrezzo(martello);
-		assertTrue(this.borsa.getPesoMax() == this.borsa.getPeso());
-	}
-
+    void testBorsaPesoMassimo() {
+        this.martello = new Attrezzo("martello", 10);
+        this.borsa.addAttrezzo(martello);
+        assertTrue(this.borsa.getPesoMax() == this.borsa.getPeso());
+    }
+	
 }
