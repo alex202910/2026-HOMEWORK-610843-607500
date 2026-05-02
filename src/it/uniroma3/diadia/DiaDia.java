@@ -73,47 +73,6 @@ public class DiaDia {
 		return this.partita.isFinita();
 	}
 
-	// implementazioni dei comandi dell'utente:
-
-
-	private void prendi(String nomeAttrezzo) {
-
-		if (nomeAttrezzo != null) {
-
-			if (this.partita.getStanzaCorrente().getAttrezzo(nomeAttrezzo) != null) {
-
-				Attrezzo AttrezzoDaEliminare = this.partita.getStanzaCorrente().getAttrezzo(nomeAttrezzo);
-				if (this.partita.getGiocatore().getBorsa().addAttrezzo(AttrezzoDaEliminare)) {
-					this.partita.getStanzaCorrente().removeAttrezzo(AttrezzoDaEliminare);
-					IO.mostraMessaggio("l'oggetto" + " " + nomeAttrezzo + " " + "è stato preso dalla stanza");
-				} else
-					IO.mostraMessaggio("la borsa è troppo piena, svuotala");
-			} else
-				IO.mostraMessaggio("l'oggetto" + " " + nomeAttrezzo + " " + "non è stato trovato nella stanza");
-		} else
-			IO.mostraMessaggio("il comando inesistente");
-
-	}
-
-	private void posa(String nomeAttrezzo) {
-
-		if (nomeAttrezzo != null) {
-
-			if (this.partita.getGiocatore().getBorsa().getAttrezzo(nomeAttrezzo) != null) {
-
-				Attrezzo AttrezzoDaPosare = this.partita.getGiocatore().getBorsa().getAttrezzo(nomeAttrezzo);
-
-				if (this.partita.getStanzaCorrente().addAttrezzo(AttrezzoDaPosare)) {
-					this.partita.getGiocatore().getBorsa().removeAttrezzo(nomeAttrezzo);
-					IO.mostraMessaggio("l'oggetto" + " " + nomeAttrezzo + " " + "è stato posato");
-				} else
-					IO.mostraMessaggio("la stanza è troppo piena, prova altrove");
-			} else
-				IO.mostraMessaggio("l'oggetto" + " " + nomeAttrezzo + " " + "non è presente nella tua borsa");
-		}
-
-	}
-
 	public static void main(String[] argc) {
 		IO io = new IOConsole();
 		DiaDia gioco = new DiaDia(io);
