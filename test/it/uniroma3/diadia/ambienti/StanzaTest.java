@@ -19,6 +19,11 @@ class StanzaTest {
 	}
 	
 	@Test
+	void testHasAttrezzoNull() {
+		assertFalse(this.stanza.hasAttrezzo(""));
+	}
+	
+	@Test
 	void testHasAttrezzoStanzaVuota() {
 		assertFalse(this.stanza.hasAttrezzo("penna"));
 	}

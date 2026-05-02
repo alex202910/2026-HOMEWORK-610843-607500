@@ -19,22 +19,22 @@ class LabirintoTest {
 	}
 	
 	@Test
-	void testVerificaStanzaCorrenteNotNull() {
-		assertNotNull(this.labirinto.getStanzaCorrente());
+	void testVerificaStanzaInizialeNotNull() {
+		assertNotNull(this.labirinto.getStanzaIniziale());
 	}
 	
 	@Test
 	void testVerificaStanzaVincenteNotNull() {
-		assertNotNull(this.labirinto.getStanzaVincente());
+		assertNotNull(this.labirinto.getStanzaFinale());
 	}
 	
 	@Test
 	void testVerificaStanzaVincente() {
-		assertTrue(this.labirinto.getStanzaVincente().getNome().equals(biblioteca.getNome()));
+		assertTrue(this.labirinto.getStanzaFinale().getNome().equals(biblioteca.getNome()));
 	}
 	
 	@Test
 	void testVerificaStanzaCorrente() {
-		assertTrue(this.labirinto.getStanzaCorrente().getNome().equals(atrio.getNome()));
+		assertTrue(this.labirinto.getStanzaIniziale().getNome().equals(atrio.getNome()));
 	}
 }

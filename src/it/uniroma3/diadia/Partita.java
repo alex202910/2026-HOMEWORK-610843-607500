@@ -20,6 +20,9 @@ public class Partita {
 	
 	/*
 	 * Costruttore per Partita
+	 * 
+	 * @return as
+	 * 
 	 */
 	public Partita(){
 		this.labirinto = new Labirinto();
@@ -52,15 +55,17 @@ public class Partita {
 	}
 	
 	/**
-	 * Restituisce vero se e solo se la partita e' stata vinta
-	 * @return vero se partita vinta
+	 * @return vero se e solo se è stato raggiunto la Stanza Vincente
 	 */
 	public boolean vinta() {
 		return this.labirinto.getStanzaIniziale() == this.labirinto.getStanzaFinale();
 	}
 	
-	public boolean persa() {
-		return this.giocatore.getCfu()<=0;
+	/**
+	 * @return vero se e solo se i CFU del giocatore NOn sono a ZERO
+	 */
+	public boolean giocatoreIsVivo() {
+		return this.giocatore.getCfu() > 0;
 	}
 
 	/**
@@ -68,8 +73,6 @@ public class Partita {
 	 * @return vero se partita finita
 	 */
 	public boolean isFinita() {
-		return finita || vinta() || persa();
+		return finita || vinta() || !giocatoreIsVivo();
 	}
-
-	
 }
