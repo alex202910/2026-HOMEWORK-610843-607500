@@ -15,7 +15,7 @@ import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
  *
  * @author docente di POO (da un'idea di Michael Kolling and David J. Barnes)
  * 
- * @version HW1
+ * @version HW2
  */
 
 public class DiaDia {
