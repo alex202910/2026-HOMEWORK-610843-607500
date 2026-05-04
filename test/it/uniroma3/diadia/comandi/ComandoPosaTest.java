@@ -6,21 +6,64 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 class ComandoPosaTest {
 	
 	private Partita partita;
-	private ComandoVai comando;
+	private Attrezzo axe;
+	private Stanza atrio;
 
 	@BeforeEach
 	public void setUp() {
-		comando = new ComandoVai();
 		partita = new Partita();
+		axe = new Attrezzo("axe",5);
+		atrio = partita.getStanzaCorrente();
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
+	void testPosaOggettoEsistente() {
+		partita.getGiocatore().getBorsa().addAttrezzo(axe);
 
+		Comando comando = new ComandoPosa();
+		comando.setParametro("axe"); 
+		comando.esegui(partita);
+		
+		assertFalse(partita.getGiocatore().getBorsa().hasAttrezzo("axe")); //rimosso dalla borsa
+		assertTrue(partita.getStanzaCorrente().hasAttrezzo("axe"));		   //aggiunto nell stanza
+	}
+	
+	@Test
+	void testPosaOggettoNonEsistente() {
+		partita.getGiocatore().getBorsa().addAttrezzo(axe);
+		
+		Comando comando = new ComandoPosa();
+		comando.setParametro("lanterna"); 
+		comando.esegui(partita);
+		
+		assertFalse(partita.getGiocatore().getBorsa().hasAttrezzo("lanterna"));
+	}
+	
+	@Test
+	void testPosaOggettoInUnaStanzaPiena() {
+		
+		int maxAttrezziStanza = atrio.getAttrezzi().length;
+		for(int i=0; i<maxAttrezziStanza; i++) {
+			atrio.addAttrezzo(new Attrezzo("finto" + i, 1)); //vengono aggiunti gli attrezzi finto0, finto1, ...
+		}
+		
+		//il giocatore ha l'axe da posare
+		partita.getGiocatore().getBorsa().addAttrezzo(axe);
+		
+		Comando comando = new ComandoPosa();
+		comando.setParametro("axe"); 
+		comando.esegui(partita);
+		
+		
+		//l'axe rimane nella borsa per la stanza in cui la vuole posare (l'atrio) è piena
+		//e di conseguenza l'axe non si trova nell'atrio
+		assertTrue(partita.getGiocatore().getBorsa().hasAttrezzo("axe")); 
+		assertFalse(atrio.hasAttrezzo("axe")); 
+	}
 }
