@@ -6,21 +6,70 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Stanza;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 class ComandoPrendiTest {
 
 	private Partita partita;
-	private ComandoVai comando;
+	private Attrezzo axe;
+	private Stanza atrio;
 
 	@BeforeEach
 	public void setUp() {
-		comando = new ComandoVai();
 		partita = new Partita();
+		axe = new Attrezzo("axe",5);
+		atrio = partita.getStanzaCorrente();
 	}
 
+	
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testPrendiOggettoInStanza() {
+		atrio.addAttrezzo(axe);
+		
+		ComandoPrendi comando = new ComandoPrendi();
+		comando.setParametro("axe");
+		
+		comando.esegui(partita);
+		
+		//Axe presente nell'atrio, ma col comando viene preso 
+		//e non si trova più nella stanza atrio
+		assertFalse(atrio.hasAttrezzo("axe"));
+		
+		//Axe presente nella borsa del giocatore
+		assertTrue(partita.getGiocatore().getBorsa().hasAttrezzo("axe"));
 	}
-
+	
+	@Test
+	void testPrendiOggettoNonEsistenteInStanza() {
+		ComandoPrendi comando = new ComandoPrendi();
+		comando.setParametro("axe");
+		
+		comando.esegui(partita);
+		
+		//Axe NON trovato nell'atrio
+		assertFalse(atrio.hasAttrezzo("axe"));
+		
+		//Axe NON presente nella borsa del giocatore
+		assertFalse(partita.getGiocatore().getBorsa().hasAttrezzo("axe"));
+	}
+	
+	@Test
+	void testPrendiOggettoPesanteInStanza() {
+		
+		Attrezzo tavolo = new Attrezzo("tavolo",15);
+		atrio.addAttrezzo(tavolo);
+		
+		ComandoPrendi comando = new ComandoPrendi();
+		comando.setParametro("tavolo");
+		
+		comando.esegui(partita);
+		
+		//Tavolo presente nell'atrio
+		assertTrue(atrio.hasAttrezzo("tavolo"));
+		
+		//Tavolo NON presente nella borsa del giocatore perchè troppo pesante
+		//Borsa ha la capacità massima di 10kg mentre il tavolo pesa 15kg
+		assertFalse(partita.getGiocatore().getBorsa().addAttrezzo(tavolo));
+	}
 }

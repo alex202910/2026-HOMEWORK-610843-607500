@@ -12,4 +12,14 @@ public interface Comando {
 	 * set parametro del comando
 	 */
 	public void setParametro(String parametro);
+	
+	/*
+	 * Ritorna il nome del parametro
+	 */
+	//public String getParametro();
+	
+	/*
+	 * ritorna il nome del comando
+	 */
+	//public String getNome();
 }
