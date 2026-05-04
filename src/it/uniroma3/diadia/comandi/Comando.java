@@ -16,10 +16,10 @@ public interface Comando {
 	/*
 	 * Ritorna il nome del parametro
 	 */
-	//public String getParametro();
+	public String getParametro();
 	
 	/*
 	 * ritorna il nome del comando
 	 */
-	//public String getNome();
+	public String getNome();
 }

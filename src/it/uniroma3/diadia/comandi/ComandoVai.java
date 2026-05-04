@@ -10,7 +10,9 @@ import it.uniroma3.diadia.ambienti.Stanza;
  */
 public class ComandoVai implements Comando {
 	
+	private String nomeComando = "vai";
 	private String direzione;
+	
 	private IOConsole IO = new IOConsole();
 
 	/**
@@ -36,7 +38,6 @@ public class ComandoVai implements Comando {
 		IO.mostraMessaggio(partita.getStanzaCorrente().getNome());
 		partita.getGiocatore().setCfu(partita.getGiocatore().getCfu() - 1);
 		
-		//IO.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
 		IO.mostraMessaggio("CFU = " + partita.getGiocatore().getCfu());
 	}
 	
@@ -44,4 +45,15 @@ public class ComandoVai implements Comando {
 	public void setParametro(String parametro) {
 		this.direzione = parametro;
 	}
+	
+	@Override
+	public String getParametro() {
+		return this.direzione;
+	}
+
+	@Override
+	public String getNome() {
+		return this.nomeComando;
+	}
+
 }

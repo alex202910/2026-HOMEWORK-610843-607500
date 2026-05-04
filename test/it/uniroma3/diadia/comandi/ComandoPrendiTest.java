@@ -25,11 +25,11 @@ class ComandoPrendiTest {
 	
 	@Test
 	void testPrendiOggettoInStanza() {
+		
 		atrio.addAttrezzo(axe);
 		
 		ComandoPrendi comando = new ComandoPrendi();
 		comando.setParametro("axe");
-		
 		comando.esegui(partita);
 		
 		//Axe presente nell'atrio, ma col comando viene preso 
@@ -42,9 +42,9 @@ class ComandoPrendiTest {
 	
 	@Test
 	void testPrendiOggettoNonEsistenteInStanza() {
+		
 		ComandoPrendi comando = new ComandoPrendi();
 		comando.setParametro("axe");
-		
 		comando.esegui(partita);
 		
 		//Axe NON trovato nell'atrio
@@ -62,14 +62,13 @@ class ComandoPrendiTest {
 		
 		ComandoPrendi comando = new ComandoPrendi();
 		comando.setParametro("tavolo");
-		
 		comando.esegui(partita);
 		
-		//Tavolo presente nell'atrio
+		//Tavolo rimane presente nell'atrio
 		assertTrue(atrio.hasAttrezzo("tavolo"));
 		
-		//Tavolo NON presente nella borsa del giocatore perchè troppo pesante
-		//Borsa ha la capacità massima di 10kg mentre il tavolo pesa 15kg
+		//Poichè la borsa ha la capacità massima di 10kg e il tavolo pesa 15kg,
+		//quest'ultimo NON può essere messo nella borsa perchè e troppo pensante.
 		assertFalse(partita.getGiocatore().getBorsa().addAttrezzo(tavolo));
 	}
 }

@@ -6,7 +6,9 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class ComandoPrendi implements Comando {
 	
+	private String nomeComando = "prendi";
 	private String nomeAttrezzo;
+	
 	private IOConsole IO = new IOConsole();
 	
 	@Override
@@ -32,7 +34,17 @@ public class ComandoPrendi implements Comando {
 	@Override
 	public void setParametro(String parametro) {
 		this.nomeAttrezzo = parametro;
-
 	}
+	
+	@Override
+	public String getParametro() {
+		return this.nomeAttrezzo;
+	}
+
+	@Override
+	public String getNome() {
+		return this.nomeComando;
+	}
+
 
 }

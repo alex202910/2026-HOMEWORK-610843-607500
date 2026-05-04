@@ -9,9 +9,11 @@ import it.uniroma3.diadia.Partita;
  */
 public class ComandoAiuto implements Comando {
 	
+	private String nomeComando = "aiuto";
+	private String parametro;
+	
 	static final private String[] elencoComandi = { "vai", "aiuto", "fine", "prendi", "posa", "guarda"};
 	private IOConsole IO = new IOConsole();
-	private String parametro;
 	
 	@Override
 	public void esegui(Partita partita) {
@@ -25,5 +27,16 @@ public class ComandoAiuto implements Comando {
 	public void setParametro(String parametro) {
 		this.parametro = parametro;
 	}
+	
+	@Override
+	public String getParametro() {
+		return this.parametro;
+	}
+
+	@Override
+	public String getNome() {
+		return this.nomeComando;
+	}
+
 
 }

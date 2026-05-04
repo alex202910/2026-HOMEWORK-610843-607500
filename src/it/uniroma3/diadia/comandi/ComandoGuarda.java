@@ -7,9 +7,10 @@ import it.uniroma3.diadia.Partita;
  * stampa le informazioni sulla stanza corrente e sullo stato della partita
  */
 public class ComandoGuarda implements Comando {
-	
-	private IOConsole IO = new IOConsole();
+
+	private String nomeComando = "guarda";
 	private String parametro;
+	private IOConsole IO = new IOConsole();
 	
 	@Override
 	public void esegui(Partita partita) {
@@ -23,5 +24,16 @@ public class ComandoGuarda implements Comando {
 		this.parametro = parametro;
 
 	}
+	
+	@Override
+	public String getParametro() {
+		return this.parametro;
+	}
+
+	@Override
+	public String getNome() {
+		return this.nomeComando;
+	}
+
 
 }

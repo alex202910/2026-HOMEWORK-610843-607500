@@ -5,6 +5,16 @@ import java.util.Scanner;
 public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi{
 	
 	public Comando costruisciComando(String istruzione) {
+		
+		/*
+		 * Istruzione if aggiunto (individuata durante il test della classe)
+		 * per evitare che lo scanner legga valori nulli
+		 * e faccia ritornare subito un comandoNonValido
+		 */
+		if(istruzione == null)
+			return new ComandoNonValido();
+			
+		
 		Scanner scannerDiParole = new Scanner(istruzione);
 		String nomeComando = null;
 		String parametro = null;
@@ -17,20 +27,28 @@ public class FabbricaDiComandiFisarmonica implements FabbricaDiComandi{
 		
 		if (nomeComando == null)
 			comando = new ComandoNonValido();
+		
 		else if (nomeComando.equals("vai"))
 			comando = new ComandoVai();
+		
 		else if (nomeComando.equals("prendi"))
 			comando = new ComandoPrendi();	
+		
 		else if (nomeComando.equals("posa"))
 			comando = new ComandoPosa();	
+		
 		else if (nomeComando.equals("aiuto"))
 			comando = new ComandoAiuto();	
+		
 		else if (nomeComando.equals("fine"))
 			comando = new ComandoFine();	
+		
 		else if (nomeComando.equals("guarda"))
 			comando = new ComandoGuarda();	
+		
 		else
 			comando = new ComandoNonValido();
+		
 		comando.setParametro(parametro);
 		return comando;
 	}
