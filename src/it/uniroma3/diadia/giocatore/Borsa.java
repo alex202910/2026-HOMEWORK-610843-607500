@@ -1,6 +1,5 @@
 package it.uniroma3.diadia.giocatore;
 
-import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class Borsa {
