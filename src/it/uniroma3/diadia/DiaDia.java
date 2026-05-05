@@ -1,9 +1,5 @@
 package it.uniroma3.diadia;
 
-import java.util.Scanner;
-
-import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.comandi.Comando;
 import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
 
@@ -21,7 +17,7 @@ import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
 public class DiaDia {
 
 	static final private String MESSAGGIO_BENVENUTO = ""
-			+ "Ti trovi nell'Universita', ma oggi e' diversa dal solito...\n"
+			+ "\nTi trovi nell'Universita', ma oggi e' diversa dal solito...\n"
 			+ "Meglio andare al piu' presto in biblioteca a studiare. Ma dov'e'?\n"
 			+ "I locali sono popolati da strani personaggi, " + "alcuni amici, altri... chissa!\n"
 			+ "Ci sono attrezzi che potrebbero servirti nell'impresa:\n"
@@ -32,20 +28,22 @@ public class DiaDia {
 	private IO IO;
 	private Partita partita;
 
-	public DiaDia(IO IO) {
+	public DiaDia(IO io) {
         this.partita = new Partita();
-        this.IO = IO;
+        this.IO = io;
     }
 
 	public void gioca() {
 		String istruzione;
-		Scanner scannerDiLinee;
 
 		IO.mostraMessaggio(MESSAGGIO_BENVENUTO);
-		scannerDiLinee = new Scanner(System.in);
 		do
-			istruzione = scannerDiLinee.nextLine();
+			istruzione = IO.leggiRiga();
 		while (!processaIstruzione(istruzione));
+	}
+	
+	public Partita getPartita() {
+		return this.partita;
 	}
 
 	/**
@@ -59,14 +57,15 @@ public class DiaDia {
 		FabbricaDiComandiFisarmonica factory = new FabbricaDiComandiFisarmonica();
 		
 		comandoDaEseguire = factory.costruisciComando(istruzione);
-		comandoDaEseguire.esegui(this.partita);
+		comandoDaEseguire.esegui(this.partita, this.IO);
+		
 		if (this.partita.vinta()) {
 			IO.mostraMessaggio("Hai vinto!");
 			return true;
 		}
 		
 		if (!this.partita.giocatoreIsVivo()) {
-			IO.mostraMessaggio("Hai esaurito i CFU...");
+			IO.mostraMessaggio("Hai Perso. CFU esauriti...");
 			return true;
 		}
 

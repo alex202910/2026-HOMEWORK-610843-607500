@@ -58,11 +58,12 @@ public class Partita {
 	 * @return vero se e solo se è stato raggiunto la Stanza Vincente
 	 */
 	public boolean vinta() {
-		return this.labirinto.getStanzaIniziale() == this.labirinto.getStanzaFinale();
+		return this.stanzaCorrente == this.labirinto.getStanzaFinale(); 
+		//this.labirinto.getStanzaIniziale() è l'errore
 	}
 	
 	/**
-	 * @return vero se e solo se i CFU del giocatore NOn sono a ZERO
+	 * @return vero se e solo se i CFU del giocatore NON sono a ZERO
 	 */
 	public boolean giocatoreIsVivo() {
 		return this.giocatore.getCfu() > 0;

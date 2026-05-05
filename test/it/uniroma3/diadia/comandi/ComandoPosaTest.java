@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
@@ -14,12 +15,14 @@ class ComandoPosaTest {
 	private Partita partita;
 	private Attrezzo axe;
 	private Stanza atrio;
+	private IOConsole io;
 
 	@BeforeEach
 	public void setUp() {
 		partita = new Partita();
 		axe = new Attrezzo("axe",5);
 		atrio = partita.getStanzaCorrente();
+		io = new IOConsole();
 	}
 
 	@Test
@@ -28,7 +31,7 @@ class ComandoPosaTest {
 
 		Comando comando = new ComandoPosa();
 		comando.setParametro("axe"); 
-		comando.esegui(partita);
+		comando.esegui(partita, io);
 		
 		assertFalse(partita.getGiocatore().getBorsa().hasAttrezzo("axe")); //rimosso dalla borsa
 		assertTrue(partita.getStanzaCorrente().hasAttrezzo("axe"));		   //aggiunto nell stanza
@@ -40,7 +43,7 @@ class ComandoPosaTest {
 		
 		Comando comando = new ComandoPosa();
 		comando.setParametro("lanterna"); 
-		comando.esegui(partita);
+		comando.esegui(partita, io);
 		
 		assertFalse(partita.getGiocatore().getBorsa().hasAttrezzo("lanterna"));
 	}
@@ -58,7 +61,7 @@ class ComandoPosaTest {
 		
 		Comando comando = new ComandoPosa();
 		comando.setParametro("axe"); 
-		comando.esegui(partita);
+		comando.esegui(partita, io);
 		
 		
 		//l'axe rimane nella borsa per la stanza in cui la vuole posare (l'atrio) è piena

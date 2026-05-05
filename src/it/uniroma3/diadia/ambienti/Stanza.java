@@ -9,7 +9,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * 
  * @author docente di POO 
  * @see Attrezzo
- * @version base
+ * @version HW2
 */
 
 public class Stanza {
@@ -43,8 +43,8 @@ public class Stanza {
     /**
      * Imposta una stanza adiacente.
      *
-     * @param direzione direzione in cui sara' posta la stanza adiacente.
-     * @param stanza stanza adiacente nella direzione indicata dal primo parametro.
+     * @param String direzione, direzione in cui sara' posta la stanza adiacente.
+     * @param Stanza stanza, adiacente nella direzione indicata dal primo parametro.
      */
     public void impostaStanzaAdiacente(String direzione, Stanza stanza) {
         boolean aggiornato = false;
@@ -150,7 +150,7 @@ public class Stanza {
 	/**
      * Restituisce l'attrezzo nomeAttrezzo se presente nella stanza.
 	 * @param nomeAttrezzo
-	 * @return l'attrezzo presente nella stanza.
+	 * @return Attrezzo l'attrezzo presente nella stanza.
      * 		   null se l'attrezzo non e' presente.
 	 */
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {

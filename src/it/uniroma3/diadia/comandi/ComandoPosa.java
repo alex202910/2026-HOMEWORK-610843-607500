@@ -1,6 +1,6 @@
 package it.uniroma3.diadia.comandi;
 
-import it.uniroma3.diadia.IOConsole;
+import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
@@ -8,10 +8,9 @@ public class ComandoPosa implements Comando {
 	
 	private String nomeComando = "posa";
 	private String nomeAttrezzo;
-	private IOConsole IO = new IOConsole();
 	
 	@Override
-	public void esegui(Partita partita) {
+	public void esegui(Partita partita, IO IO) {
 		
 		if (nomeAttrezzo != null) {
 
