@@ -1,6 +1,7 @@
 package it.uniroma3.diadia.giocatore;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static it.uniroma3.diadia.giocatore.Giocatore.CFU_INIZIALI;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ class GiocatoreTest {
 	
 	@Test
 	void testVerificaCfuIniziali() {
-		assertTrue(this.Kinn.getCfu() == 20);
+		assertTrue(this.Kinn.getCfu() == CFU_INIZIALI);
 	}
 	
 	@Test

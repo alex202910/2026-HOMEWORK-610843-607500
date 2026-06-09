@@ -19,6 +19,14 @@ public class Labirinto {
 		this.stanzaIniziale = inizo;
 	}
 	
+	public void setStanzaVincente(Stanza vincente) {
+		this.stanzaFinale = vincente;
+		
+	}
+	
+	public Stanza getStanzaVincente() {
+		return this.stanzaFinale;
+	}
 	
 	/**
 	 * Costruttore di Labirinto
@@ -66,4 +74,6 @@ public class Labirinto {
         stanzaIniziale = atrio;  
 		stanzaFinale = biblioteca;
     }
+
+
 }

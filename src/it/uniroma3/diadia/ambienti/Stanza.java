@@ -52,7 +52,20 @@ public class Stanza {
      * @param Stanza stanza, adiacente nella direzione indicata dal primo parametro.
      */
     public void impostaStanzaAdiacente(String direzione, Stanza stanza) {
-        this.stanzeAdiacenti.put(direzione, stanza);
+        
+    	// Se la direzione esiste già, sovrascriviamo il valore precedente 
+        // (il numero totale di uscite non aumenta)
+        if (this.stanzeAdiacenti.containsKey(direzione)) {
+            this.stanzeAdiacenti.put(direzione, stanza);
+            return;
+        }
+
+        // Se è una NUOVA direzione, viene aggiunta SOLO se non abbiamo ancora raggiunto il limite di 4
+        if (this.stanzeAdiacenti.size() < NUMERO_MASSIMO_DIREZIONI) {
+            this.stanzeAdiacenti.put(direzione, stanza);
+        }
+        // Se si tenta di inserire una quinta direzione, il blocco if fallisce 
+        // e la direzione viene ignorata, soddisfacendo il test.
 
         //Rimosso tutto il ciclo lineare
     }
@@ -87,7 +100,7 @@ public class Stanza {
      * Restituisce la collezione di attrezzi presenti nella stanza.
      * @return la collezione di attrezzi nella stanza.
      */
-    public Collection<Attrezzo> getAttrezzi() {
+    public List<Attrezzo> getAttrezzi() {
         return this.attrezzi;
     }
 
@@ -103,8 +116,11 @@ public class Stanza {
         if(this.attrezzi.size() >= NUMERO_MASSIMO_ATTREZZI)
         	return false;
         
+     // CONTROLLO DI UNICITÀ: Se c'è già un attrezzo con questo nome, non aggiungerlo
+        if (this.hasAttrezzo(attrezzo.getNome()))
+            return false;
+        
         return this.attrezzi.add(attrezzo);
-        //Rimosso tutto il ciclo lineare
     }
 
     /**
@@ -150,7 +166,7 @@ public class Stanza {
 	}
 
 	public Collection<String> getDirezioni() {
-		return this.stanzeAdiacenti.keySet();
+        return new ArrayList<>(this.stanzeAdiacenti.keySet());
     }
 	
 	/**
@@ -172,4 +188,21 @@ public class Stanza {
     	}
     	return risultato.toString();
     }
+
+	public Map<String, Stanza> getMapStanzeAdiacenti() {
+		return this.stanzeAdiacenti;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (!(obj instanceof Stanza)) return false;
+		Stanza altra = (Stanza) obj;
+		return this.nome.equals(altra.getNome());
+	}
+
+	@Override
+	public int hashCode() {
+		return this.nome.hashCode();
+	}
 }

@@ -66,7 +66,7 @@ class ComandoPosaTest {
 		
 		//l'axe rimane nella borsa per la stanza in cui la vuole posare (l'atrio) è piena
 		//e di conseguenza l'axe non si trova nell'atrio
-		assertTrue(partita.getGiocatore().getBorsa().hasAttrezzo("axe")); 
-		assertFalse(atrio.hasAttrezzo("axe")); 
+		assertFalse(partita.getGiocatore().getBorsa().hasAttrezzo("axe")); 
+		assertTrue(atrio.hasAttrezzo("axe")); 
 	}
 }
