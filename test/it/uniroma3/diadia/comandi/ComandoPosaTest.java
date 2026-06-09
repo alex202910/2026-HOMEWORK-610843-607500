@@ -51,7 +51,7 @@ class ComandoPosaTest {
 	@Test
 	void testPosaOggettoInUnaStanzaPiena() {
 		
-		int maxAttrezziStanza = atrio.getAttrezzi().length;
+		int maxAttrezziStanza = atrio.getAttrezzi().size();
 		for(int i=0; i<maxAttrezziStanza; i++) {
 			atrio.addAttrezzo(new Attrezzo("finto" + i, 1)); //vengono aggiunti gli attrezzi finto0, finto1, ...
 		}

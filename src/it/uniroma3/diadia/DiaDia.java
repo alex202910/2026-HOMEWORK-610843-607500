@@ -74,6 +74,7 @@ public class DiaDia {
 
 	public static void main(String[] argc) {
 		IO io = new IOConsole();
+		
 		DiaDia gioco = new DiaDia(io);
 		gioco.gioca();
 	}
