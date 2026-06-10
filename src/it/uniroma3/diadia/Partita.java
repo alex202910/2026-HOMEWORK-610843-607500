@@ -25,11 +25,18 @@ public class Partita {
 	 * 
 	 */
 	public Partita(){
-		this.labirinto = new Labirinto();
-		this.giocatore = new Giocatore();
-		this.finita = false;
-		this.stanzaCorrente = this.labirinto.getStanzaIniziale();
+		this(new Labirinto());
 	}
+	
+	/*
+	 * Nuovo costruttore che prendi come parametro Labirinto
+	 */
+	public Partita(Labirinto labirinto) {
+        this.labirinto = labirinto;
+        this.stanzaCorrente = labirinto.getStanzaIniziale();
+        this.giocatore = new Giocatore();
+        this.finita = false;
+    }
 	
 	public Giocatore getGiocatore() {
         return this.giocatore;

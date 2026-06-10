@@ -2,7 +2,7 @@ package it.uniroma3.diadia.giocatore;
 
 public class Giocatore {
 	
-	static final private int CFU_INIZIALI = 3;
+	static final protected int CFU_INIZIALI = 3;
 	private int cfu;
 	private Borsa borsa;
 	

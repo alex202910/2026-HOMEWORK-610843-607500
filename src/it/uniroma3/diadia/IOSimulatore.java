@@ -1,27 +1,40 @@
 package it.uniroma3.diadia;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
  * Classe che simula i comandi di lettura e scrittura di Input e Output
  */
 public class IOSimulatore implements IO {
 	
-	private String[] righeDaLeggere; // Array per comandi 
-    private int indiceRigaCorrente;  // Indice per scorrere l'array
+	private List<String> righeDaLeggere;
+	private int indiceRigaCorrente;
+	private List<String> messaggiProdotti;
 
-    public IOSimulatore(String[] righeDaLeggere) {
-        this.righeDaLeggere = righeDaLeggere;
-        this.indiceRigaCorrente = 0;
-    }
+	public IOSimulatore(List<String> righeDaLeggere) {
+		this.righeDaLeggere = righeDaLeggere;
+		this.indiceRigaCorrente = 0;
+		this.messaggiProdotti = new ArrayList<>();
+	}
 
-    @Override
-    public String leggiRiga() {
-        String riga = this.righeDaLeggere[indiceRigaCorrente];
-        this.indiceRigaCorrente++;
-        return riga;
-    }
+	@Override
+	public String leggiRiga() {
+		if (this.indiceRigaCorrente < this.righeDaLeggere.size()) {
+			String riga = this.righeDaLeggere.get(this.indiceRigaCorrente);
+			this.indiceRigaCorrente++;
+			return riga;
+		}
+		return "fine"; // Stringa di chiusura di sicurezza
+	}
 
-    @Override
-    public void mostraMessaggio(String messaggio) {
-        System.out.println(messaggio);
-    }
+	@Override
+	public void mostraMessaggio(String messaggio) {
+		// Cattura il messaggio all'interno della collezione per l'analisi del test case
+		this.messaggiProdotti.add(messaggio);
+	}
+	
+	public List<String> getMessaggiProdotti() {
+		return this.messaggiProdotti;
+	}
 }
